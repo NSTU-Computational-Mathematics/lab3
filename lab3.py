@@ -1,3 +1,5 @@
+from typing import List, Any
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint
@@ -31,13 +33,24 @@ def gauss_elimination_with_pivoting(A, B):
     return x
 
 
-def solve_func(a, x):
+def solve_func(coefficients, x):
     sum = 0
 
-    for i in range(len(a)):
-        sum += a[i] * x ** i
+    for i in range(len(coefficients)):
+        sum += coefficients[i] * x ** i
 
     return sum
+
+
+def generate_graph_data(coefficients, left_bound, right_bound, step):
+    a: list[Any] = []
+    b: list[Any] = []
+
+    for x in np.arange(left_bound, right_bound, step):
+        a.append(x)
+        b.append(solve_func(coefficients, x))
+
+    return a, b
 
 
 x = [8, 10, 12, 14, 16]
@@ -54,9 +67,9 @@ for i in range(n):
 
 result = gauss_elimination_with_pivoting(X, Y)
 
+a, b = generate_graph_data(result, 0, 10, 0.1)
 
-
-plt.plot([], [])
-plt.xlabel('Time')
-plt.ylabel('Number of neutrons')
+plt.plot(a, b)
+plt.xlabel('Похуй')
+plt.ylabel('Насрать вообще')
 plt.show()
