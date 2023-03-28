@@ -67,9 +67,10 @@ for i in range(n):
 
 result = gauss_elimination_with_pivoting(X, Y)
 
-a, b = generate_graph_data(result, 0, 10, 0.1)
+a, b = generate_graph_data(result, 0, 20, 0.01)
 
 plt.plot(a, b)
+plt.plot(x, f, 'o')
 plt.xlabel('Похуй')
 plt.ylabel('Насрать вообще')
 plt.show()
